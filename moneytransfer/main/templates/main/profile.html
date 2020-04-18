@@ -1,0 +1,28 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+{% block head %}
+  <title>Profile</title>
+{% endblock %}
+{% block content %}
+<form  method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Profile Information</legend>
+    {{ p_form.first_name|as_crispy_field }}
+    {{ p_form.last_name|as_crispy_field }}
+    {{ p_form.middle_initial|as_crispy_field }}
+    {{ p_form.mailing_address|as_crispy_field }}
+    {{ p_form.country|as_crispy_field }}
+    {{ p_form.email|as_crispy_field }}
+    {{ p_form.phone_number|as_crispy_field }}
+    {{ p_form.credit_card|as_crispy_field }}
+    {{ p_form.bank_number|as_crispy_field }}
+
+
+  </fieldset>
+  <div class="form-group">
+    <button type="submit" class="btn btn-outline-info">Update</button>
+  </div>
+</form>
+
+{% endblock %}
