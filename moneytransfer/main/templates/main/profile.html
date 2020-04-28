@@ -1,5 +1,7 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
+{% load friendshiptags %}
+
 {% block head %}
   <title>Profile</title>
 {% endblock %}
@@ -24,5 +26,15 @@
     <button type="submit" class="btn btn-outline-info">Update</button>
   </div>
 </form>
+<p>contact list</p>
+{% friends request.user%}
+<br>
+<p>requests</p>
+{% friend_requests request.user%}
+<form action="{% url 'accept' request.user.pk %}"  method='POST'>
+  {% csrf_token %}
+  <td><button type="submit" class="btn btn-success" onclick="">Accept</button></td>
+</form>
+{% friend_request_count request.user %}
 
 {% endblock %}

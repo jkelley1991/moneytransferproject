@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+{% load friendshiptags %}
+
+{% block head %}
+  <title>Search for Users by Email</title>
+{% endblock %}
+{% block content %}
+<form  method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-group">
+    <div class="col-lg-5">
+      <input type="text" name="srh" class="form-control" placeholder="Enter Email">
+    </div>
+    <label class="col-lg-2">
+      <button type="submit" class="btn btn-success">Search</button>
+    </label>
+  </div>
+</form><br><br>
+
+<div>
+  {% if messages %}
+    <ul class="messages">
+      {% for k in messages %}
+      <li> {{ k }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div><br>
+  <div>
+
+    {% if sr %}
+      {% for k in sr %}
+      <table border="0px" width="300px">
+      <tr>
+        <td>Name</td>
+        <td>{{ k.user.pk }}</td>
+        <form action="{% url 'add_f' k.user.pk %}"  method='POST'>
+          {% csrf_token %}
+          <td><button type="submit" class="btn btn-warning" onclick="">Add Contact</button></td>
+        </form>
+
+      </tr>
+      </table>
+      {% endfor %}
+    {% endif %}
+
+  </div>
+
+{% endblock %}
