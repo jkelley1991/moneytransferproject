@@ -1,0 +1,15 @@
+download and extract the folder to your desktop. 
+open cmd prompt. 
+check to see if you have python installed by 
+entering python --version
+enter pip install django
+enter pip install django-friendship
+enter pip install django-countries
+enter pip install django-crispy-forms
+cd into the moneytransfer directory
+enter python manage.py runserver
+
+if you don't get an error  and the server is running, open a browser window and type localhost:8000 *this is the home page for now*
+
+
+*this is incomplete, working on getting it all right*
