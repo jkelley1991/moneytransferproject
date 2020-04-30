@@ -13,3 +13,4 @@ class UserProfile(models.Model):
     phone_number = models.IntegerField(max_length = 10, null = True)
     credit_card = models.IntegerField(max_length = 16,null = True)
     bank_number = models.IntegerField(max_length = 16,null = True)
+    balance = models.DecimalField(default = 0, max_digits=6, decimal_places=2)
