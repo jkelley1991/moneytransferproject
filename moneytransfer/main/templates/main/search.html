@@ -3,9 +3,10 @@
 {% load friendshiptags %}
 
 {% block head %}
-  <title>Search for Users by Email</title>
+  <title>Search</title>
 {% endblock %}
 {% block content %}
+<legend class="border-bottom mb-3">Search for Contact</legend>
 <form  method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="form-group">
@@ -34,7 +35,7 @@
       <table border="0px" width="300px">
       <tr>
         <td>Name</td>
-        <td>{{ k.user.pk }}</td>
+        <td>{{ k.user.first_name }} {{ k.user.last_name}}</td>
         <form action="{% url 'add_f' k.user.pk %}"  method='POST'>
           {% csrf_token %}
           <td><button type="submit" class="btn btn-warning" onclick="">Add Contact</button></td>

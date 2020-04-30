@@ -6,4 +6,9 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['first_name', 'last_name', 'middle_initial', 'mailing_address',
-        'country','email','phone_number','credit_card','bank_number',]
+        'country','email','phone_number','credit_card','bank_number','balance']
+
+class TransferForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['balance']

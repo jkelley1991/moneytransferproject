@@ -19,22 +19,38 @@
     {{ p_form.phone_number|as_crispy_field }}
     {{ p_form.credit_card|as_crispy_field }}
     {{ p_form.bank_number|as_crispy_field }}
+    {{ p_form.balance|as_crispy_field }}
 
 
   </fieldset>
-  <div class="form-group">
+  <div class="form-group" >
     <button type="submit" class="btn btn-outline-info">Update</button>
   </div>
 </form>
-<p>contact list</p>
-{% friends request.user%}
-<br>
-<p>requests</p>
-{% friend_requests request.user%}
-<form action="{% url 'accept' request.user.pk %}"  method='POST'>
-  {% csrf_token %}
-  <td><button type="submit" class="btn btn-success" onclick="">Accept</button></td>
-</form>
-{% friend_request_count request.user %}
 
+<legend class="border-bottom mb-3">Contact List</legend>
+
+  {% for fr in friends %}
+
+  <form action="{% url 'transfer_request' user.pk fr.pk %}" class="list-group"  method='get'>
+    {% csrf_token %}
+        <p style = "font-family:cambria; font-size:24px" class="text-capitalize">
+          {{ fr.first_name }} {{ fr.last_name }}
+        <button type="submit" class="btn btn-info" style="width:10%">Transfer</button>
+        </p>
+  </form>
+  {% endfor %}
+
+<br>
+
+<legend class="border-bottom mb-3">Contact Requests</legend>
+
+  {% for fr in f_requests %}
+  <form action="{% url 'accept' fr.to_user.pk fr.from_user.pk %}" class="list-group"  method='POST'>
+    {% csrf_token %}
+        <p style = "font-family:cambria; font-size:24px" class="text-capitalize">{{ fr.from_user.first_name }} {{ fr.from_user.last_name }}
+        <button type="submit" class="btn btn-success" style="width:10%">Accept</button></p>
+
+  </form>
+  {% endfor %}
 {% endblock %}

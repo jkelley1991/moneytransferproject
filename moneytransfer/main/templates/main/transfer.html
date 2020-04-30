@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% block title %}Home Page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<legend class="border-bottom mb-3">
+  <p style = "font-family:cambria; font-size:24px" class="text-capitalize">
+    Send to {{ to_user.first_name }} {{ to_user.last_name }}
+  </p>
+</legend>
+<form class="form-group" action="{% url 'transfer_request' user.pk to_user.pk %}"enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  <input type="number" step="any" name="tr" class="form-control" placeholder="Enter Transfer Amount">
+  <button type="submit" class="btn btn-warning">Transfer</button>
+</form>
+
+<div>
+  {% if messages %}
+    <ul class="messages">
+      {% for k in messages %}
+      <li> {{ k }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div><br>
+{% endblock %}
